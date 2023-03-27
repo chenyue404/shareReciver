@@ -33,7 +33,7 @@ class ReceiverActivity : Activity() {
             log("收到$it")
             preAddText = shareText
         } ?: kotlin.run {
-            log("没读取到任何内容")
+            log("没读取到任何内容", true)
             finish()
             return
         }
@@ -51,8 +51,11 @@ class ReceiverActivity : Activity() {
         }
     }
 
-    private fun log(str: String) {
+    private fun log(str: String, showToast: Boolean = false) {
         Log.d("ReceiverActivity", str)
+        if (showToast) {
+            Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun pickFile() {
